@@ -104,3 +104,17 @@ prec_17_new = prec_17 %>%
   mutate(., year = '2017')
 ```
 
+```{r}
+prec_16 =
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
+  janitor::clean_names() 
+
+names(prec_16) = as.matrix(prec_16[1, ])
+prec_16 = prec_16[-1, ]
+prec_16[] = lapply(prec_16, function(x) type.convert(as.character(x))) 
+
+prec_16_new = prec_16 %>%
+  janitor::clean_names() %>%
+  dplyr::filter(., !is.na(.$total)) %>%
+  mutate(., year = '2016')
+```
