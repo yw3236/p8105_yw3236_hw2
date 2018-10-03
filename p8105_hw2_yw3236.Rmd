@@ -118,3 +118,19 @@ prec_16_new = prec_16 %>%
   dplyr::filter(., !is.na(.$total)) %>%
   mutate(., year = '2016')
 ```
+
+* Combine datasets and convert month to a character variable.
+
+```{r}
+prec = left_join(prec_16_new, prec_17_new, by = "month") 
+prec
+
+prec %>%
+  dplyr::rename(., total_2016 = total.x, total_2017 = total.y) %>%
+  select(., -year.x, -year.y) %>%
+  mutate(., month.abb[month]) %>%
+  select(., -month) %>%
+  dplyr::rename(., month = `month.abb[month]`) %>%
+  select(., month, total_2016, total_2017)
+  
+```
