@@ -67,3 +67,22 @@ nrow(dist_ada_station_serve_A)
 ```
 
 There are `r nrow(dist_station_serve_A)` distinct stations serve A train, and `r nrow(dist_ada_station_serve_A)` of them are ADA compliant.
+
+# Problem 2
+
+### Read and clean the Mr. Trash Wheel sheet
+* Specify the sheet in the Excel file and to omit columns containing notes.
+
+* Omit rows that do not include dumpster-specific data.
+
+* Rounds the number of sports balls to the nearest integer and converts the result to an integer variable.
+
+```{r}
+trash_data = 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = 1, range = cellranger::cell_cols("A:N")) %>% 
+  janitor::clean_names() %>%
+  dplyr::filter(., !is.na(dumpster)) %>%
+  mutate(sports_balls = round(sports_balls)) %>%
+  mutate(sports_balls = as.integer(.$sports_balls))
+```
+
