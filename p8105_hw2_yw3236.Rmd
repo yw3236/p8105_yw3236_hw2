@@ -101,7 +101,7 @@ prec_17[] = lapply(prec_17, function(x) type.convert(as.character(x)))
 prec_17_new = prec_17 %>%
   janitor::clean_names() %>%
   dplyr::filter(., !is.na(.$total)) %>%
-  mutate(., year = '2017')
+  mutate(., year = '2017') 
 ```
 
 ```{r}
@@ -116,7 +116,7 @@ prec_16[] = lapply(prec_16, function(x) type.convert(as.character(x)))
 prec_16_new = prec_16 %>%
   janitor::clean_names() %>%
   dplyr::filter(., !is.na(.$total)) %>%
-  mutate(., year = '2016')
+  mutate(., year = '2016') 
 ```
 
 * Combine datasets and convert month to a character variable.
@@ -132,5 +132,18 @@ prec %>%
   select(., -month) %>%
   dplyr::rename(., month = `month.abb[month]`) %>%
   select(., month, total_2016, total_2017)
-  
 ```
+
+### A paragraph about these data
+
+```{r}
+nrow(prec_17_new)
+nrow(prec_16_new)
+```
+
+```{r}
+trash_data_16 = trash_data %>% 
+  dplyr::filter(., year == '2016')
+```
+
+There are `r nrow(prec_17_new)` observations in 2017 precipitation dataset. There are `r nrow(prec_16_new)` observations in 2016 precipitation dataset. The key variable is `total`, which precipitation total for each month. The total precipitation in 2017 is `r sum(prec_17_new$total) - tail(prec_17_new$total, n = 1)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
