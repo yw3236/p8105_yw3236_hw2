@@ -35,3 +35,12 @@ nrow(distinct(transit_data, line, station_name))
 
 The number of the distinct stations are `r nrow(distinct(transit_data, line, station_name))`.
 
+```{r}
+station_ada = 
+  distinct(transit_data, line, station_name, .keep_all = TRUE) %>%
+  dplyr::filter(., ada == TRUE)
+nrow(station_ada)
+```
+
+There are `r nrow(station_ada)` stations that are ADA compliant.
+
