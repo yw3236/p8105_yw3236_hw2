@@ -44,3 +44,12 @@ nrow(station_ada)
 
 There are `r nrow(station_ada)` stations that are ADA compliant.
 
+```{r}
+vending_no = transit_data %>%
+  dplyr::filter(., vending == 'NO')
+
+prop = nrow(dplyr::filter(vending_no, entry == TRUE)) / nrow(vending_no)
+prop
+```
+
+The proportion of station entrances / exists without vending allow entrance is `r prop`.
