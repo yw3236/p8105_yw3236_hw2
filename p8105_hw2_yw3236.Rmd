@@ -23,3 +23,6 @@ transit_data =
   select(., "line", "station_name", "station_latitude", "station_longitude", "route1":"route11", "entry", "vending", "entrance_type", "ada") %>%
   mutate(., entry = recode(entry, YES = TRUE, NO = FALSE))
 ```
+
+### A short paragraph about this dataset 
+The variables that dataset contains are `line`, `station_name`, `station_latitude`, `station_longitude`, `rout1` to `rout11`, `entry`, `vending`, `entrence_type`, `ada`. After reading the dataset to R, I used `janitor::clean_names()` to clean the variable names. Then I used `select` to selecte the variables that I want to keep in the dataset and delete other unwanted variables. Lastly, I used `mutate` and `recode` to convert the `entry` from character variable to logical variable. The dimension of the resulting dataset is 1868 x 19. Yes, the data are tidy.
