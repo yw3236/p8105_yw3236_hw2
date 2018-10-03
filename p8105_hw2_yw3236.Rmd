@@ -205,3 +205,8 @@ median(new_2002$excellent, na.rm = TRUE)
 ```
 
 The median of "Excellent" is `r median(new_2002$excellent, na.rm = TRUE)`.
+
+* Make a histogram of “Excellent” response values in the year 2002.
+
+```{r}
+ggplot(new_2002, aes(x = excellent)) + geom_histogram()
