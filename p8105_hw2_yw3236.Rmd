@@ -1,0 +1,6 @@
+---
+title: "p8105_hw2_yw3236"
+output: github_document
+author: "Yishan Wang"
+date: 2018-10-01
+---
