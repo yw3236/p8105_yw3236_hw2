@@ -186,3 +186,13 @@ new = brfss_smart2010 %>%
   select(., year:county, excellent, very_good, good, fair, poor) %>%
   mutate(., excellent_or_very_good = (excellent + very_good) / (excellent + very_good + good + fair + poor))
 ```
+
+### Do or answer the questions
+```{r}
+distinct(new, county)
+distinct(new, state)
+new %>%
+  count(state)
+```
+
+There are `r nrow(distinct(new, county))` unique locations that are included in the dataset. Yes, every state is represented in the data set. The state that is observed most is NJ (146 times).
