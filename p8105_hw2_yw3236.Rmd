@@ -147,3 +147,19 @@ trash_data_16 = trash_data %>%
 ```
 
 There are `r nrow(prec_17_new)` observations in 2017 precipitation dataset. There are `r nrow(prec_16_new)` observations in 2016 precipitation dataset. The key variable is `total`, which precipitation total for each month. The total precipitation in 2017 is `r sum(prec_17_new$total) - tail(prec_17_new$total, n = 1)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
+
+# Problem 3
+
+### Load and read the data from the `p8105.datasets` package
+
+```{r}
+devtools::install_github("p8105/p8105.datasets")
+```
+
+```{r}
+library(p8105.datasets)
+```
+
+```{r}
+data(brfss_smart2010)
+```
