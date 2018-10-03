@@ -196,3 +196,12 @@ new %>%
 ```
 
 There are `r nrow(distinct(new, county))` unique locations that are included in the dataset. Yes, every state is represented in the data set. The state that is observed most is NJ (146 times).
+
+```{r}
+new_2002 = new %>%
+  dplyr::filter(., year == '2002') 
+
+median(new_2002$excellent, na.rm = TRUE)
+```
+
+The median of "Excellent" is `r median(new_2002$excellent, na.rm = TRUE)`.
