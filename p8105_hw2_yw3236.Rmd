@@ -53,3 +53,17 @@ prop
 ```
 
 The proportion of station entrances / exists without vending allow entrance is `r prop`.
+
+```{r}
+reform_data = transit_data %>%
+  gather(., key = route_num, value = route_name, route1:route11) %>%
+  dplyr::filter(., route_name == 'A')
+
+dist_station_serve_A = distinct(reform_data, line, station_name, .keep_all = TRUE)
+nrow(dist_station_serve_A)
+
+dist_ada_station_serve_A = dplyr::filter(dist_station_serve_A, ada == TRUE)
+nrow(dist_ada_station_serve_A)
+```
+
+There are `r nrow(dist_station_serve_A)` distinct stations serve A train, and `r nrow(dist_ada_station_serve_A)` of them are ADA compliant.
