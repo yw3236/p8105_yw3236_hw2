@@ -210,3 +210,13 @@ The median of "Excellent" is `r median(new_2002$excellent, na.rm = TRUE)`.
 
 ```{r}
 ggplot(new_2002, aes(x = excellent)) + geom_histogram()
+```
+
+* Make a scatterplot showing the proportion of “Excellent” response values in New York County and Queens County (both in NY State) in each year from 2002 to 2010.
+
+```{r}
+new_ny_q = new %>%
+  dplyr::filter(., county == 'NY - New York County' | county == 'NY - Queens County')
+
+ggplot(new_ny_q, aes(x = year, y = excellent)) + geom_point(aes(color = county))
+```
