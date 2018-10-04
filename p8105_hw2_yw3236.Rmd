@@ -159,7 +159,7 @@ trash_data_16 = trash_data %>%
   dplyr::filter(., year == '2016')
 ```
 
-There are `r nrow(trash_data)` observations in resulting Mr.Trash Wheel dataset. There are `r nrow(prec_combine)` observations in resulting combination of 2016 and 2017 precipitation dataset. The key variable is `total`, which precipitation total for each month. The total precipitation in 2017 is `r sum(prec_17_new$total)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
+There are `r nrow(trash_data)` observations in resulting Mr.Trash Wheel dataset. There are `r nrow(prec_combine)` observations in resulting combination of 2016 and 2017 precipitation dataset. For resulting Mr.Trash Wheel dataset, the key variables are `weight_tons`, `volume_cubic_ya`, `plastic_bottles`, `polystyrene`, `cigarette_butts`, `glass_bottles`, `grocery_bags`, `chip_bags`, `sports_balls`, `homes_powered`. For resulting combination of 2016 and 2017 precipitation dataset, `total_2016` and `total_2017` are key variables. The total precipitation in 2017 is `r sum(prec_17_new$total)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
 
 # Problem 3
 
