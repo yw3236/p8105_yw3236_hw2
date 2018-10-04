@@ -27,7 +27,7 @@ transit_data
 ```
 
 ### A short paragraph about this dataset 
-The variables that dataset contains are `line`, `station_name`, `station_latitude`, `station_longitude`, `rout1` to `rout11`, `entry`, `vending`, `entrence_type`, `ada`. After reading the dataset to R, I used `janitor::clean_names()` to clean the variable names. Then I used `select` to selecte the variables that I want to keep in the dataset and delete other unwanted variables. Lastly, I used `mutate` and `recode` to convert the `entry` from character variable to logical variable. The dimension of the resulting dataset is 1868 x 19. Yes, the data are tidy.
+The variables that dataset contains are `line`, `station_name`, `station_latitude`, `station_longitude`, `rout1` to `rout11`, `entry`, `vending`, `entrence_type`, `ada`. After reading the dataset to R, I used `janitor::clean_names()` to clean the variable names. Then I used `select` to selecte the variables that I want to keep in the dataset and delete other unwanted variables. Lastly, I used `mutate` and `recode` to convert the `entry` from character variable to logical variable. The dimension of the resulting dataset is 1868 x 19. Yes, the data are not tidy.
 
 ### Answering the questons
 
@@ -82,7 +82,7 @@ There are `r nrow(dist_station_serve_A)` distinct stations serve A train, and `r
 
 ```{r}
 trash_data = 
-  readxl::read_excel("./HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = 1, range = cellranger::cell_cols("A:N")) %>% 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 1, range = cellranger::cell_cols("A:N")) %>% 
   janitor::clean_names() %>%
   dplyr::filter(., !is.na(dumpster)) %>%
   mutate(sports_balls = round(sports_balls)) %>%
@@ -96,7 +96,7 @@ trash_data
 
 ```{r}
 prec_17 =
-  readxl::read_excel("./HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = 3, range = cellranger::cell_cols("A:B")) %>% 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 3, range = cellranger::cell_cols("A:B")) %>% 
   janitor::clean_names() 
 
 names(prec_17) = as.matrix(prec_17[1, ])
@@ -113,7 +113,7 @@ prec_17_new
 
 ```{r}
 prec_16 =
-  readxl::read_excel("./HealthyHarborWaterWheelTotals2017-9-26.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
   janitor::clean_names() 
 
 names(prec_16) = as.matrix(prec_16[1, ])
