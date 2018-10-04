@@ -214,7 +214,7 @@ There are `r nrow(distinct(formated_brfss_smart2010, county))` unique locations 
 formated_brfss_smart2010_2002 = formated_brfss_smart2010 %>%
   dplyr::filter(., year == '2002') 
 
-median(formated_brfss_smart2010$excellent, na.rm = TRUE)
+median(formated_brfss_smart2010_2002$excellent, na.rm = TRUE)
 ```
 
 The median of "Excellent" is `r median(formated_brfss_smart2010_2002$excellent, na.rm = TRUE)`.
