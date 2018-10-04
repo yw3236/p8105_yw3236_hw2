@@ -96,7 +96,7 @@ trash_data
 
 ```{r}
 prec_17 =
-  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 3, range = cellranger::cell_cols("A:B")) %>% 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
   janitor::clean_names() 
 
 names(prec_17) = as.matrix(prec_17[1, ])
@@ -113,7 +113,7 @@ prec_17_new
 
 ```{r}
 prec_16 =
-  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
+  readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 5, range = cellranger::cell_cols("A:B")) %>% 
   janitor::clean_names() 
 
 names(prec_16) = as.matrix(prec_16[1, ])
