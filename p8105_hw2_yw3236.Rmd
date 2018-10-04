@@ -97,7 +97,8 @@ trash_data
 ```{r}
 prec_17 =
   readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 4, range = cellranger::cell_cols("A:B")) %>% 
-  janitor::clean_names() 
+  janitor::clean_names() %>% 
+  dplyr::filter(., !is.na(precipitation_in))
 
 names(prec_17) = as.matrix(prec_17[1, ])
 prec_17 = prec_17[-1, ]
@@ -114,7 +115,8 @@ prec_17_new
 ```{r}
 prec_16 =
   readxl::read_excel("./HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = 5, range = cellranger::cell_cols("A:B")) %>% 
-  janitor::clean_names() 
+  janitor::clean_names() %>% 
+  dplyr::filter(., !is.na(precipitation_in))
 
 names(prec_16) = as.matrix(prec_16[1, ])
 prec_16 = prec_16[-1, ]
@@ -148,8 +150,8 @@ prec_combine
 ### A paragraph about these data
 
 ```{r}
-nrow(prec_17_new)
-nrow(prec_16_new)
+nrow(trash_data)
+nrow(prec_combine)
 ```
 
 ```{r}
@@ -157,7 +159,7 @@ trash_data_16 = trash_data %>%
   dplyr::filter(., year == '2016')
 ```
 
-There are `r nrow(prec_17_new)` observations in 2017 precipitation dataset. There are `r nrow(prec_16_new)` observations in 2016 precipitation dataset. The key variable is `total`, which precipitation total for each month. The total precipitation in 2017 is `r sum(prec_17_new$total) - tail(prec_17_new$total, n = 1)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
+There are `r nrow(trash_data)` observations in resulting Mr.Trash Wheel dataset. There are `r nrow(prec_combine)` observations in resulting combination of 2016 and 2017 precipitation dataset. The key variable is `total`, which precipitation total for each month. The total precipitation in 2017 is `r sum(prec_17_new$total)`. The median number of sports balls in a dumpster in 2016 is `r median(trash_data_16$sports_balls)`.
 
 # Problem 3
 
@@ -222,15 +224,25 @@ The median of "Excellent" is `r median(formated_brfss_smart2010_2002$excellent, 
 * Make a histogram of “Excellent” response values in the year 2002.
 
 ```{r}
-ggplot(formated_brfss_smart2010_2002, aes(x = excellent)) + geom_histogram()
+ggplot(formated_brfss_smart2010_2002, aes(x = excellent)) + geom_histogram() +
+  labs(
+    title = "Histogram of Excellent Response Values in the Year 2002",
+    x = "Excellent Response Values",
+    y = "Count"
+  )
 ```
 
 * Make a scatterplot showing the proportion of “Excellent” response values in New York County and Queens County (both in NY State) in each year from 2002 to 2010.
 
 ```{r}
 new_ny_queen = formated_brfss_smart2010 %>%
-  dplyr::filter(., county == 'NY - New York County' | county == 'NY - Queens County')
+  dplyr::filter(., county == 'NY - New York County' | county == 'NY - Queens County') 
 
-ggplot(new_ny_queen, aes(x = year, y = excellent)) + geom_point(aes(color = county))
+ggplot(new_ny_queen, aes(x = year, y = excellent)) + geom_point(aes(color = county)) +
+  labs(
+    title = "Proportion of Excellent Response in New York County and Queens County",
+    x = "Year",
+    y = "Proportion of Excellent Response Values (%)"
+  )
 ```
 
